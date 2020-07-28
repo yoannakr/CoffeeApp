@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfDrink xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Drink>
+    <Id>1</Id>
+    <Name>Black Coffee</Name>
+    <Price>1.20</Price>
+    <Count>0</Count>
+	<DrinkSizeEnum>Small</DrinkSizeEnum>
+  </Drink>
+  <Drink>
+    <Id>2</Id>
+    <Name>Coffee</Name>
+    <Price>1.20</Price>
+    <Count>0</Count>
+	<DrinkSizeEnum>Small</DrinkSizeEnum>
+  </Drink>
+</ArrayOfDrink>
