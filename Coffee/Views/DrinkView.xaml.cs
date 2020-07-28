@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Coffee.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Coffee.Views
     /// <summary>
     /// Interaction logic for DrinkView.xaml
     /// </summary>
-    public partial class DrinkView : UserControl
+    public partial class DrinkView : UserControl, IView
     {
         public DrinkView()
         {

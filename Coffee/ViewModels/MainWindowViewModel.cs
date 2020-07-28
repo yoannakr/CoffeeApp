@@ -29,7 +29,6 @@ namespace Coffee.ViewModels
 
                 return drinksCommand;
             }
-
         }
 
         private void SelectDrinkViewModel(object obj)
