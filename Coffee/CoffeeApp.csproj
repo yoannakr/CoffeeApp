@@ -14,6 +14,8 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -71,7 +73,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataSettings\DataSetting.cs" />
+    <Compile Include="DataSettings\Implementations\XmlWriter.cs" />
+    <Compile Include="DataSettings\IReader.cs" />
+    <Compile Include="DataSettings\Implementations\XmlReader.cs" />
+    <Compile Include="DataSettings\IWriter.cs" />
+    <Compile Include="Enums\DrinkSizeEnum.cs" />
     <Compile Include="Interfaces\IView.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\DrinkViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -124,6 +133,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="DataSettings\Drinks.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

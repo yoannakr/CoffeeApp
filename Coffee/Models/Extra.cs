@@ -1,9 +1,7 @@
 ﻿namespace Coffee.Models
 {
-    public class Extra
+    public class Extra : Product
     {
-        public string Name { get; set; }
 
-        public decimal Price { get; set; }
     }
 }

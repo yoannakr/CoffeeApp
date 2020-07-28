@@ -1,36 +1,9 @@
-﻿namespace Coffee.Models
+﻿using Coffee.Enums;
+
+namespace Coffee.Models
 {
-    public class Drink
+    public class Drink : Product
     {
-        private string name;
-        private decimal price;
-        private int count;
-
-        public string Name 
-        {
-            get => this.name;
-            set
-            {
-                name = value;
-            }
-        }
-
-        public decimal Price
-        {
-            get => this.price;
-            set
-            {
-                price = value;
-            }
-        }
-
-        public int Count
-        {
-            get => this.count;
-            set
-            {
-                count = value;
-            }
-        }
+        public DrinkSizeEnum Size { get; set; }
     }
 }
