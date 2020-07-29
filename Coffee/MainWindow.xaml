@@ -14,6 +14,9 @@
         <DataTemplate DataType="{x:Type vm:DrinkViewModel}">
             <v:DrinkView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SelectedItemViewModel}">
+            <v:SelectedItemView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -31,5 +34,8 @@
         <ContentPresenter 
             Grid.Column="1"
             Content="{Binding BaseViewModel}"/>
+        <ContentPresenter 
+            Grid.Column="2"
+            Content="{Binding SelectedItemViewModel}"/>
     </Grid>
 </Window>
