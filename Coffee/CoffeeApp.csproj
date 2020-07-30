@@ -80,6 +80,7 @@
     <Compile Include="DataSettings\IWriter.cs" />
     <Compile Include="Enums\DrinkSizeEnum.cs" />
     <Compile Include="Interfaces\IView.cs" />
+    <Compile Include="Models\DrinkList.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\DrinkViewModel.cs" />

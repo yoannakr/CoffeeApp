@@ -1,11 +1,13 @@
-﻿using Prism.Commands;
+﻿using System;
+using System.Windows;
+using Prism.Commands;
 using Coffee.Models;
+using Coffee.Enums;
 using System.Windows.Input;
 using Coffee.DataSettings;
 using Coffee.DataSettings.Implementations;
 using System.Collections.ObjectModel;
 using static Coffee.DataSettings.DataSetting;
-using System;
 
 namespace Coffee.ViewModels
 {
@@ -16,7 +18,9 @@ namespace Coffee.ViewModels
 
         public int Count { get; set; }
 
-        public string DrinkName { get; set; }
+        public Drink Drink { get; set; }
+
+        public DrinkSizeEnum DrinkSize { get; set; }
 
         public ObservableCollection<Drink> Drinks
         {
@@ -36,7 +40,21 @@ namespace Coffee.ViewModels
 
         private void AddDrinkToSelectedItem(object obj)
         {
+            if (Drink == null)
+            {
+                MessageBox.Show("Please choose drink!");
+            }
+            else if (Count <= 0 || Count > 10)
+            {
+                MessageBox.Show("Please enter count between 1 and 10!");
+            }
+            else if (!Enum.IsDefined(typeof(DrinkSizeEnum), DrinkSize))
+            {
+                MessageBox.Show("Please choose size!");
+            }
 
+            decimal sizePrice = (decimal)DrinkSize / 100;
+            MessageBox.Show($"{Drink.Name} {Count} {DrinkSize} {Count * (Drink.Price + sizePrice)}");
         }
     }
 }

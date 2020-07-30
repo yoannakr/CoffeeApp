@@ -14,7 +14,6 @@ namespace Coffee.ViewModels
             set
             {
                 if (value == view)
-
                     return;
 
                 view = value;
