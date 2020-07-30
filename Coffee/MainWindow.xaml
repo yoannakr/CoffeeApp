@@ -21,8 +21,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="400"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="650"/>
         </Grid.ColumnDefinitions>
         <StackPanel
             Grid.Column="0" >
@@ -34,8 +33,5 @@
         <ContentPresenter 
             Grid.Column="1"
             Content="{Binding BaseViewModel}"/>
-        <ContentPresenter 
-            Grid.Column="2"
-            Content="{Binding SelectedItemViewModel}"/>
     </Grid>
 </Window>
