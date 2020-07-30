@@ -8,7 +8,6 @@ namespace Coffee.ViewModels
     public class MainWindowViewModel : BaseViewModel
     {
         private BaseViewModel viewModel;
-        private SelectedItemViewModel selectedModel;
         private ICommand drinksCommand;
 
         public BaseViewModel BaseViewModel
@@ -18,16 +17,6 @@ namespace Coffee.ViewModels
             {
                 viewModel = value;
                 OnPropertyChanged("BaseViewModel");
-            }
-        }
-
-        public SelectedItemViewModel SelectedItemViewModel
-        {
-            get => this.selectedModel;
-            set
-            {
-                selectedModel = value;
-                OnPropertyChanged("SelectedItemViewModel");
             }
         }
 
@@ -52,15 +41,6 @@ namespace Coffee.ViewModels
             drinkView.DataContext = drinkViewModel;
 
             BaseViewModel = drinkViewModel;
-
-            SelectedItemViewModel selectedViewModel = new SelectedItemViewModel();
-            SelectedItemView selectedView = new SelectedItemView();
-
-            selectedViewModel.View = selectedView;
-
-            selectedView.DataContext = selectedViewModel;
-
-            SelectedItemViewModel = selectedViewModel;
         }
     }
 }
