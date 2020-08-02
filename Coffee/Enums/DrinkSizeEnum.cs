@@ -2,9 +2,9 @@
 {
     public enum DrinkSizeEnum
     {
-        Small = 10,
-        Medium = 20,
-        Large = 30,
-        ExtraLarge = 40
+        Small = 0,
+        Medium = 1,
+        Large = 2,
+        ExtraLarge = 3
     }
 }
