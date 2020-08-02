@@ -18,13 +18,17 @@ namespace Coffee.ViewModels
         private readonly IReader xml = new XmlReader();
         private SelectedItemViewModel selectedModel;
 
+        public DrinkViewModel(SelectedItemViewModel selected)
+        {
+            this.selectedModel = selected;
+        }
+
         public int Count { get; set; }
 
         public Drink Drink { get; set; }
 
         public DrinkSizeEnum DrinkSize { get; set; }
 
-        //List
         public ObservableCollection<Drink> Drinks
         {
             get => xml.ReadData<Drink>(DrinksXml);
@@ -32,14 +36,26 @@ namespace Coffee.ViewModels
 
         public SelectedItemViewModel SelectedItemViewModel
         {
-            get => this.selectedModel;
+            get
+            {
+                if (selectedModel == null)
+                {
+                    selectedModel = new SelectedItemViewModel();
+                    SelectedItemView selectedView = new SelectedItemView();
+
+                    selectedModel.View = selectedView;
+
+                    selectedView.DataContext = selectedModel;
+                }
+
+                return selectedModel;
+            }
             set
             {
                 selectedModel = value;
                 OnPropertyChanged("SelectedItemViewModel");
             }
         }
-
 
         public ICommand AddDrinkCommand
         {
@@ -56,21 +72,6 @@ namespace Coffee.ViewModels
         {
             if (!IsDrinkValid())
                 return;
-
-            decimal sizePrice = (decimal)DrinkSize / 100;
-            MessageBox.Show($"{Drink.Name} {Count} {DrinkSize} {Count * (Drink.Price + sizePrice)}");
-
-            if (SelectedItemViewModel == null)
-            {
-                SelectedItemViewModel selectedViewModel = new SelectedItemViewModel();
-                SelectedItemView selectedView = new SelectedItemView();
-
-                selectedViewModel.View = selectedView;
-
-                selectedView.DataContext = selectedViewModel;
-
-                SelectedItemViewModel = selectedViewModel;
-            }
 
             SelectedItemViewModel.Drinks.Add(Drink);
         }

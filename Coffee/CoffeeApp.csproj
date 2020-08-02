@@ -83,10 +83,14 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\DrinkViewModel.cs" />
+    <Compile Include="ViewModels\ExtraViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\SelectedItemViewModel.cs" />
     <Compile Include="Views\DrinkView.xaml.cs">
       <DependentUpon>DrinkView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExtraView.xaml.cs">
+      <DependentUpon>ExtraView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SelectedItemView.xaml.cs">
       <DependentUpon>SelectedItemView.xaml</DependentUpon>
@@ -104,6 +108,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\DrinkView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExtraView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

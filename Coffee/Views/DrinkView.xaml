@@ -7,7 +7,7 @@
              xmlns:en ="clr-namespace:Coffee.Enums"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="650">
+             d:DesignHeight="450" d:DesignWidth="850">
     <UserControl.Resources>
         <ObjectDataProvider MethodName="GetValues"
                         ObjectType="{x:Type sys:Enum}"
@@ -22,7 +22,7 @@
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="110"/>
             <ColumnDefinition Width="155"/>
-            <ColumnDefinition Width="235"/>
+            <ColumnDefinition Width="435"/>
         </Grid.ColumnDefinitions>
         <StackPanel
             Grid.Column="0"

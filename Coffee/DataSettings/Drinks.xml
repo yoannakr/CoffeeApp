@@ -10,7 +10,7 @@
   <Drink>
     <Id>2</Id>
     <Name>Coffee</Name>
-    <Price>1.20</Price>
+    <Price>1.30</Price>
     <Count>0</Count>
 	<DrinkSizeEnum>Small</DrinkSizeEnum>
   </Drink>
