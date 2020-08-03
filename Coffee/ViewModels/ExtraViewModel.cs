@@ -3,7 +3,6 @@ using Coffee.Models;
 using System.Windows;
 using System.Windows.Input;
 using Coffee.DataSettings;
-using System.Collections.Generic;
 using Coffee.DataSettings.Implementations;
 using static Coffee.DataSettings.DataSetting;
 using System.Collections.ObjectModel;
@@ -35,7 +34,7 @@ namespace Coffee.ViewModels
 
         public DrinkViewModel Drink { get; set; }
 
-        public SelectedItemViewModel SelectedItemViewModel { get;}
+        public SelectedItemViewModel SelectedItemViewModel { get; }
 
         public ICommand AddExtraCommand
         {
@@ -67,7 +66,8 @@ namespace Coffee.ViewModels
             {
                 IsValid = false;
                 MessageBox.Show("Please choose drink first!");
-            }else if (Extra == null)
+            }
+            else if (Extra == null)
             {
                 IsValid = false;
                 MessageBox.Show("Please choose extra!");
@@ -76,7 +76,7 @@ namespace Coffee.ViewModels
             {
                 IsValid = false;
                 MessageBox.Show("Please enter count between 1 and 10!");
-            }      
+            }
 
             return IsValid;
         }

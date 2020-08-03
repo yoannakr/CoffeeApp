@@ -46,7 +46,7 @@ namespace Coffee.ViewModels
         {
             get
             {
-                if (Drink.Extras.Count == 0)
+                if (extras == null)
                     extras = new ObservableCollection<Extra>();
 
                 return extras;
@@ -69,7 +69,8 @@ namespace Coffee.ViewModels
             if (!IsDrinkValid())
                 return;
 
-            SelectedItemViewModel.Drinks.Add(this);   
+            SelectedItemViewModel.Drinks.Add(this);
+            SelectedItemViewModel.HasItems = true;
         }
 
         private bool IsDrinkValid()
