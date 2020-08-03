@@ -5,31 +5,21 @@ namespace Coffee.ViewModels
 {
     public class SelectedItemViewModel : BaseViewModel
     {
-        private ObservableCollection<Drink> drinks;
-        private ObservableCollection<Extra> extras;
+        private ObservableCollection<DrinkViewModel> drinks;
 
-        public ObservableCollection<Drink> Drinks
+        public ObservableCollection<DrinkViewModel> Drinks
         {
             get
             {
                 if (drinks == null)
-                    drinks = new ObservableCollection<Drink>();
+                    drinks = new ObservableCollection<DrinkViewModel>();
 
                 return drinks;
             }
         }
 
-        public ObservableCollection<Extra> Extras
-        {
-            get
-            {
-                if (extras == null)
-                    extras = new ObservableCollection<Extra>();
-
-                return extras;
-            }
-        }
-
         public decimal CurrentSum { get; set; }
+
+        public DrinkViewModel Drink { get; set; }
     }
 }

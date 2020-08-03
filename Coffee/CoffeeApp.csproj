@@ -78,7 +78,7 @@
     <Compile Include="DataSettings\IReader.cs" />
     <Compile Include="DataSettings\Implementations\XmlReader.cs" />
     <Compile Include="DataSettings\IWriter.cs" />
-    <Compile Include="Enums\DrinkSizeEnum.cs" />
+    <Compile Include="Enums\Enums.cs" />
     <Compile Include="Interfaces\IView.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
@@ -151,6 +151,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="DataSettings\Drinks.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="DataSettings\Extras.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

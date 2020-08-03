@@ -53,7 +53,7 @@ namespace Coffee.ViewModels
             {
                 if (extraViewModel == null)
                 {
-                    extraViewModel = new ExtraViewModel();
+                    extraViewModel = new ExtraViewModel(SelectedItemViewModel);
                     ExtraView extraView = new ExtraView();
 
                     extraViewModel.View = extraView;

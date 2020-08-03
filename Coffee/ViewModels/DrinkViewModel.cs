@@ -3,24 +3,25 @@ using System.Windows;
 using Prism.Commands;
 using Coffee.Models;
 using Coffee.Enums;
-using Coffee.Views;
 using System.Windows.Input;
 using Coffee.DataSettings;
-using Coffee.DataSettings.Implementations;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Coffee.DataSettings.Implementations;
 using static Coffee.DataSettings.DataSetting;
+using System.Linq;
 
 namespace Coffee.ViewModels
 {
     public class DrinkViewModel : BaseViewModel
     {
         private ICommand addDrinkCommand;
+        private ObservableCollection<Extra> extras;
         private readonly IReader xml = new XmlReader();
-        private SelectedItemViewModel selectedModel;
 
         public DrinkViewModel(SelectedItemViewModel selected)
         {
-            this.selectedModel = selected;
+            this.SelectedItemViewModel = selected;
         }
 
         public int Count { get; set; }
@@ -29,31 +30,26 @@ namespace Coffee.ViewModels
 
         public DrinkSizeEnum DrinkSize { get; set; }
 
+        public SelectedItemViewModel SelectedItemViewModel { get; }
+
+        public decimal Total
+        {
+            get => this.Count * this.Drink.Price;
+        }
+
         public ObservableCollection<Drink> Drinks
         {
             get => xml.ReadData<Drink>(DrinksXml);
         }
 
-        public SelectedItemViewModel SelectedItemViewModel
+        public ObservableCollection<Extra> Extras
         {
             get
             {
-                if (selectedModel == null)
-                {
-                    selectedModel = new SelectedItemViewModel();
-                    SelectedItemView selectedView = new SelectedItemView();
+                if (Drink.Extras.Count == 0)
+                    extras = new ObservableCollection<Extra>();
 
-                    selectedModel.View = selectedView;
-
-                    selectedView.DataContext = selectedModel;
-                }
-
-                return selectedModel;
-            }
-            set
-            {
-                selectedModel = value;
-                OnPropertyChanged("SelectedItemViewModel");
+                return extras;
             }
         }
 
@@ -73,7 +69,7 @@ namespace Coffee.ViewModels
             if (!IsDrinkValid())
                 return;
 
-            SelectedItemViewModel.Drinks.Add(Drink);
+            SelectedItemViewModel.Drinks.Add(this);   
         }
 
         private bool IsDrinkValid()
