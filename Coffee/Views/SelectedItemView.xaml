@@ -43,6 +43,7 @@
                 Height="180"
                 Width="400"
                 Visibility="{Binding HasItems, Converter={StaticResource boolToVis}}"
+                SelectedValue="{Binding Drinks[0]}"
                 SelectedItem="{Binding Drink}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -103,7 +104,7 @@
                                                 Margin="15,0,0,0"
                                                 FontStyle="Italic"
                                                 TextWrapping="Wrap"
-                                                Text="{Binding Path=Name}"/>
+                                                Text="{Binding Path=Extra.Name}"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>

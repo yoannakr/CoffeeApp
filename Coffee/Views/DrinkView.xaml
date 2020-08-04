@@ -79,6 +79,7 @@
             <Button 
                 Content="Add" 
                 Margin="10,150,20,0"
+                IsEnabled="{Binding IsEnabledAddButton}"
                 Command="{Binding AddDrinkCommand}"/>
         </StackPanel>
     </Grid>

@@ -16,7 +16,11 @@ namespace Coffee.ViewModels
     public class DrinkViewModel : BaseViewModel
     {
         private ICommand addDrinkCommand;
-        private ObservableCollection<Extra> extras;
+        private bool isEnabledAddButton;
+        private int count;
+        private Drink drink;
+        private DrinkSizeEnum drinkSize;
+        private ObservableCollection<ExtraViewModel> extras;
         private readonly IReader xml = new XmlReader();
 
         public DrinkViewModel(SelectedItemViewModel selected)
@@ -24,13 +28,47 @@ namespace Coffee.ViewModels
             this.SelectedItemViewModel = selected;
         }
 
-        public int Count { get; set; }
+        public int Count 
+        {
+            get => this.count;
+            set
+            {
+                this.count = value;
+                this.IsEnabledAddButton = IsDrinkValid();
+            }
+        }
 
-        public Drink Drink { get; set; }
+        public Drink Drink 
+        {
+            get => this.drink;
+            set
+            {
+                this.drink = value;
+                this.IsEnabledAddButton = IsDrinkValid();
+            }
+        }
 
-        public DrinkSizeEnum DrinkSize { get; set; }
+        public DrinkSizeEnum DrinkSize 
+        {
+            get => this.drinkSize;
+            set
+            {
+                this.drinkSize = value;
+                this.IsEnabledAddButton = IsDrinkValid();
+            }
+        }
 
         public SelectedItemViewModel SelectedItemViewModel { get; }
+
+        public bool IsEnabledAddButton
+        {
+            get => this.isEnabledAddButton;
+            set
+            {
+                this.isEnabledAddButton = value;
+                OnPropertyChanged("IsEnabledAddButton");
+            }
+        }
 
         public decimal Total
         {
@@ -42,16 +80,7 @@ namespace Coffee.ViewModels
             get => xml.ReadData<Drink>(DrinksXml);
         }
 
-        public ObservableCollection<Extra> Extras
-        {
-            get
-            {
-                if (extras == null)
-                    extras = new ObservableCollection<Extra>();
-
-                return extras;
-            }
-        }
+        public ObservableCollection<ExtraViewModel> Extras { get; }
 
         public ICommand AddDrinkCommand
         {
@@ -65,10 +94,7 @@ namespace Coffee.ViewModels
         }
 
         private void AddDrinkToSelectedItem(object obj)
-        {
-            if (!IsDrinkValid())
-                return;
-
+        { 
             SelectedItemViewModel.Drinks.Add(this);
             SelectedItemViewModel.HasItems = true;
         }
@@ -77,22 +103,11 @@ namespace Coffee.ViewModels
         {
             bool IsValid = true;
 
-            if (Drink == null)
+            if (Drink == null || Count <= 0 || Count > 10 || !Enum.IsDefined(typeof(DrinkSizeEnum), DrinkSize))
             {
-                IsValid = false;
-                MessageBox.Show("Please choose drink!");
+                IsValid = false;    
             }
-            else if (Count <= 0 || Count > 10)
-            {
-                IsValid = false;
-                MessageBox.Show("Please enter count between 1 and 10!");
-            }
-            else if (!Enum.IsDefined(typeof(DrinkSizeEnum), DrinkSize))
-            {
-                IsValid = false;
-                MessageBox.Show("Please choose size!");
-            }
-
+           
             return IsValid;
         }
     }

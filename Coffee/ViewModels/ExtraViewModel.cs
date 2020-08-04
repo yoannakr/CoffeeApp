@@ -14,6 +14,9 @@ namespace Coffee.ViewModels
         #region Decorations
 
         private ICommand addExtraCommand;
+        private bool isEnabledAddButton;
+        private int count;
+        private Extra extra;
         private readonly IReader xml = new XmlReader();
 
         #endregion
@@ -28,13 +31,42 @@ namespace Coffee.ViewModels
             get => xml.ReadData<Extra>(ExtrasXml);
         }
 
-        public int Count { get; set; }
+        public int Count 
+        {
+            get => this.count;
+            set
+            {
+                this.count = value;
+                this.IsEnabledAddButton = IsValid();
+            }
+        }
 
-        public Extra Extra { get; set; }
+        public Extra Extra 
+        {
+            get => this.extra;
+            set
+            {
+                this.extra = value;
+                this.IsEnabledAddButton = IsValid();
+            }
+        }
 
-        public DrinkViewModel Drink { get; set; }
-
+        public DrinkViewModel Drink 
+        {
+            get => this.SelectedItemViewModel.Drink; 
+        }
+        
         public SelectedItemViewModel SelectedItemViewModel { get; }
+
+        public bool IsEnabledAddButton 
+        {
+            get => this.isEnabledAddButton;
+            set
+            {
+                this.isEnabledAddButton = value;
+                OnPropertyChanged("IsEnabledAddButton");
+            } 
+        }
 
         public ICommand AddExtraCommand
         {
@@ -48,36 +80,19 @@ namespace Coffee.ViewModels
         }
 
         private void AddExtraToSelectedItem(object obj)
-        {
-            if (!IsValid())
-                return;
-
-            Drink.Extras.Add(Extra);
+        {       
+            Drink.Extras.Add(this);
         }
 
         private bool IsValid()
         {
             bool IsValid = true;
 
-            Drink = this.SelectedItemViewModel.Drink;
-
-
-            if (Drink == null)
+            if (Drink == null || Extra == null || Count <= 0 || Count > 10)
             {
                 IsValid = false;
-                MessageBox.Show("Please choose drink first!");
             }
-            else if (Extra == null)
-            {
-                IsValid = false;
-                MessageBox.Show("Please choose extra!");
-            }
-            else if (Count <= 0 || Count > 10)
-            {
-                IsValid = false;
-                MessageBox.Show("Please enter count between 1 and 10!");
-            }
-
+            
             return IsValid;
         }
     }
