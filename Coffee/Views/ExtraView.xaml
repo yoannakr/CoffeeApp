@@ -8,15 +8,6 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="415">
-    <UserControl.Resources>
-        <ObjectDataProvider MethodName="GetValues"
-                        ObjectType="{x:Type sys:Enum}"
-                        x:Key="SizeValues">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="en:DrinkSizeEnum" />
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>

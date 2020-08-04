@@ -6,7 +6,7 @@ namespace Coffee.ViewModels
     public class SelectedItemViewModel : BaseViewModel
     {
         private ObservableCollection<DrinkViewModel> drinks;
-        private bool hasItems;
+        private decimal currentSum;
 
         public ObservableCollection<DrinkViewModel> Drinks
         {
@@ -19,18 +19,17 @@ namespace Coffee.ViewModels
             }
         }
 
-        public decimal CurrentSum { get; set; }
+        public decimal CurrentSum
+        {
+            get => this.currentSum;
+            set
+            {
+                this.currentSum = value;
+                OnPropertyChanged("CurrentSum");
+            }
+        }
 
         public DrinkViewModel Drink { get; set; }
 
-        public bool HasItems
-        {
-            get => this.hasItems;
-            set
-            {
-                hasItems = value;
-                OnPropertyChanged("HasItems");
-            }
-        }
     }
 }
