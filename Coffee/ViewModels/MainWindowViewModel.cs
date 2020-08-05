@@ -30,7 +30,7 @@ namespace Coffee.ViewModels
             {
                 if (drinkViewModel == null)
                 {
-                    drinkViewModel = new DrinkViewModel(SelectedItemViewModel);
+                    drinkViewModel = new DrinkViewModel(this, SelectedItemViewModel);
                     DrinkView drinkView = new DrinkView();
 
                     drinkViewModel.View = drinkView;

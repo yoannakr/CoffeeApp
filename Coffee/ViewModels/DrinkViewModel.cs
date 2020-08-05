@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Windows;
 using Prism.Commands;
 using Coffee.Models;
 using Coffee.Enums;
 using System.Windows.Input;
 using Coffee.DataSettings;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Coffee.DataSettings.Implementations;
 using static Coffee.DataSettings.DataSetting;
@@ -21,17 +19,30 @@ namespace Coffee.ViewModels
         private bool hasExtras;
         private bool isEnabledAddButton;
         private DrinkSizeEnum drinkSize;
+        private ObservableCollection<ExtraViewModel> extras;
         private ICommand addDrinkCommand;
         private readonly IReader xml = new XmlReader();
 
-        public DrinkViewModel(SelectedItemViewModel selected)
+        public DrinkViewModel(MainWindowViewModel mainWindowViewModel,SelectedItemViewModel selected)
         {
-            this.SelectedItemViewModel = selected;
+            MainWindowViewModel = mainWindowViewModel;
+            SelectedItemViewModel = selected;
         }
 
         public SelectedItemViewModel SelectedItemViewModel { get; }
 
-        public ObservableCollection<ExtraViewModel> Extras { get; set; } = new ObservableCollection<ExtraViewModel>();
+        public MainWindowViewModel MainWindowViewModel { get; }
+
+        public ObservableCollection<ExtraViewModel> Extras 
+        {
+            get
+            {
+                if(extras == null)
+                    extras = new ObservableCollection<ExtraViewModel>();
+
+                return extras;
+            }
+        }
 
         public int Count
         {
@@ -40,7 +51,6 @@ namespace Coffee.ViewModels
             {
                 this.count = value;
                 IsEnabledAddButton = IsDrinkValid();
-                OnPropertyChanged("Count");
             }
         }
 
@@ -70,7 +80,7 @@ namespace Coffee.ViewModels
             set
             {
                 this.isEnabledAddButton = value;
-                OnPropertyChanged("IsEnabledAddButton");
+                OnPropertyChanged("IsEnabledAddButton");              
             }
         }
 
@@ -103,19 +113,23 @@ namespace Coffee.ViewModels
             get
             {
                 if (addDrinkCommand == null)
-                    addDrinkCommand = new DelegateCommand<object>(AddDrinkToSelectedItem);
+                    addDrinkCommand = new DelegateCommand<object>(AddDrinkToSelectedItem, CanAddDrink);
 
                 return addDrinkCommand;
             }
+        }
+
+        private bool CanAddDrink(object arg)
+        {
+            return true;
         }
 
         private void AddDrinkToSelectedItem(object obj)
         {
             SelectedItemViewModel.Drinks.Add(this);
             Drink.Count = Count;
-            Count = 0;
             SelectedItemViewModel.CurrentSum += Total;
-            IsEnabledAddButton = false;
+            MainWindowViewModel.BaseViewModel = new DrinkViewModel(MainWindowViewModel,SelectedItemViewModel);
         }
 
         private bool IsDrinkValid()
